@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.harryai</groupId>
-    <artifactId>algorithm</artifactId>
+    <artifactId>harry-algorithm</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>algorithm</name>
     <description>Demo project for Spring Boot</description>
