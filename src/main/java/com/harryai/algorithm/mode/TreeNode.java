@@ -11,7 +11,7 @@ import java.util.List;
 @Data()
 @ToString(exclude = {"children"})
 @EqualsAndHashCode(of = {"id"})
-public class TreeNode implements Comparable , Serializable {
+public class TreeNode implements Comparable<TreeNode>, Serializable {
     private String id;
     private String name;
     private String parentId;
@@ -19,7 +19,7 @@ public class TreeNode implements Comparable , Serializable {
     private List<TreeNode> children = new ArrayList<>();
 
     @Override
-    public int compareTo(Object o) {
-        return this.getName().compareToIgnoreCase(((TreeNode) o).getName());
+    public int compareTo(TreeNode o) {
+        return this.getName().compareToIgnoreCase(o.getName());
     }
 }
