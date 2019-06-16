@@ -15,7 +15,7 @@ public class DataPrepareUtil {
             "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
 
     };
-    private static Integer[] metaInt = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    private static Integer[] metaNumber = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
     private static ThreadLocalRandom random = ThreadLocalRandom.current();
 
@@ -42,14 +42,7 @@ public class DataPrepareUtil {
      * @return 返回生成的字符串
      */
     public static String prepareOneStringString(int length) {
-        int size = metaStr.length;
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            int index = random.nextInt(size);
-            builder.append(metaStr[index]);
-        }
-
-        return builder.toString();
+        return peekEle(metaStr, length).toString();
     }
 
     public static String preParespecifyString(String str, int length) {
@@ -63,6 +56,42 @@ public class DataPrepareUtil {
 
         }
         return stringBuilder.toString();
+    }
+
+    /**
+     * 要生成的number位数
+     *
+     * @param length
+     * @return
+     */
+    public static int prepareOneNumberData(int length) {
+        return Integer.valueOf(peekEle(metaNumber, length).toString());
+    }
+
+    /**
+     * 从指定的数组中随机拿取length个数元素，并拼接到一起。
+     *
+     * @param array  指定拿取元素的数组
+     * @param length 需要拿取的元素长度
+     * @param <T>
+     * @return
+     */
+    private static <T> StringBuilder peekEle(T[] array, int length) {
+        int size = array.length;
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(size);
+            builder.append(array[index]);
+        }
+        return builder;
+    }
+
+    public static Integer[] prepareNumberData(int count, int length) {
+        List<Integer> data = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            data.add(prepareOneNumberData(length));
+        }
+        return data.toArray(new Integer[data.size()]);
     }
 }
 

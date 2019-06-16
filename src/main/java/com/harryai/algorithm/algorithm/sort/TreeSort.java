@@ -34,6 +34,19 @@ public class TreeSort {
             stack.addAll(children);
         }
     }
+    private static void sortTreeWithStack1(TreeNode tree) {
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(tree);
+        while (!stack.isEmpty()) {
+            TreeNode pop = stack.pop();
+            List<TreeNode> children = pop.getChildren();
+            if (children == null || children.isEmpty()) {
+                continue;
+            }
+            QuickSort.sort(children,0,children.size()-1);
+            stack.addAll(children);
+        }
+    }
 
     /**
      * 递归排序树
@@ -60,10 +73,10 @@ public class TreeSort {
         Long start = System.currentTimeMillis();
         TreeNode clone = SerializationUtils.clone(tree);
         long cloneEnd = LogUtil.logCost("clone", start);
-        sortTreeWithRecursion(tree);
-        long recursionSort = LogUtil.logCost("recursion sort", cloneEnd);
+        sortTreeWithStack1(tree);
+        long quickSort = LogUtil.logCost("quick sort", cloneEnd);
         sortTreeWithStack(clone);
-        long stack_sort = LogUtil.logCost("stack sort", recursionSort);
+        long stack_sort = LogUtil.logCost("stack sort", quickSort);
         List<TreeNode> treeNodes = TreeNodePrepareUtil.tree2FlatList(tree);
         LogUtil.logCost("tree to flat list", stack_sort);
         System.out.println("tree node size is : " + treeNodes.size());
