@@ -2,7 +2,7 @@ package com.harryai.algorithm.algorithm.selfstudy.sort;
 
 import com.harryai.algorithm.Util.LogUtil;
 import com.harryai.algorithm.Util.TreeNodePrepareUtil;
-import com.harryai.algorithm.mode.TreeNode;
+import com.harryai.algorithm.mode.algorithm.TreeNode;
 import org.apache.commons.lang3.SerializationUtils;
 
 import java.util.*;

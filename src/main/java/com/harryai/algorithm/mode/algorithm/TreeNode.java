@@ -1,4 +1,4 @@
-package com.harryai.algorithm.mode;
+package com.harryai.algorithm.mode.algorithm;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

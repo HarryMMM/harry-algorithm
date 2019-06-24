@@ -1,6 +1,6 @@
 package com.harryai.algorithm.Util;
 
-import com.harryai.algorithm.mode.TreeNode;
+import com.harryai.algorithm.mode.algorithm.TreeNode;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
