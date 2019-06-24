@@ -4,7 +4,7 @@ import com.harryai.algorithm.Util.DataPrepareUtil;
 import com.harryai.algorithm.Util.LogUtil;
 import com.harryai.algorithm.Util.RandomUtil;
 import com.harryai.algorithm.Util.TreeNodePrepareUtil;
-import com.harryai.algorithm.algorithm.sort.QuickSort;
+import com.harryai.algorithm.algorithm.selfstudy.sort.QuickSort;
 import com.harryai.algorithm.mode.TreeNode;
 import org.apache.commons.lang3.SerializationUtils;
 import org.junit.Test;
