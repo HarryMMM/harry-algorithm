@@ -8,7 +8,6 @@ import com.harryai.algorithm.algorithm.selfstudy.sort.MergeSort;
 import com.harryai.algorithm.algorithm.selfstudy.sort.QuickSort;
 import com.harryai.algorithm.mode.algorithm.TreeNode;
 import org.apache.commons.lang3.SerializationUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -108,7 +107,7 @@ public class AlgorithmApplicationTests {
                 .ifPresent(System.out::println);
 
         int []a={1,2,3,4};
-        String []b={"I","am","harry"};ArrayBlockingQueue
+        String[] b = {"I", "am", "harry"};
         int reduce = Arrays.stream(a).reduce(1, Integer::sum);
         System.out.println(reduce);
 
