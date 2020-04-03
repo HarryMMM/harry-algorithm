@@ -27,3 +27,5 @@ HELP.md
 
 ### VS Code ###
 .vscode/
+src/main/java/com/harryai/algorithm/common/model/
+src/main/java/com/harryai/algorithm/mode/
