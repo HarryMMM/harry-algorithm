@@ -1,8 +1,9 @@
 package com.harryai.algorithm.algorithm.selfstudy.sort;
 
 import com.harryai.algorithm.Util.LogUtil;
-import com.harryai.algorithm.Util.TreeNodePrepareUtil;
-import com.harryai.algorithm.mode.algorithm.TreeNode;
+import com.harryai.algorithm.common.tree.factory.MultiwayTreeFactory;
+import com.harryai.algorithm.common.tree.model.MultiWayTreeNode;
+import com.harryai.algorithm.common.tree.utils.TreeUtils;
 import org.apache.commons.lang3.SerializationUtils;
 
 import java.util.*;
@@ -13,20 +14,20 @@ import java.util.*;
  * 结论： 递归排序比stack排序会慢一点
  */
 public class TreeSort {
-    private static TreeNode tree = TreeNodePrepareUtil.prepareTree(89);
-    private Comparator<TreeNode> comparator = (a, b) -> a.getName().compareToIgnoreCase(b.getName());
+    private static MultiWayTreeNode tree = new MultiwayTreeFactory(5,5).buildTree();
+    private Comparator<MultiWayTreeNode> comparator = (a, b) -> a.getName().compareToIgnoreCase(b.getName());
 
     /**
      * 使用stack 对树进行排序
      *
      * @param tree
      */
-    private static void sortTreeWithStack(TreeNode tree) {
-        Stack<TreeNode> stack = new Stack<>();
+    private static void sortTreeWithStack(MultiWayTreeNode tree) {
+        Stack<MultiWayTreeNode> stack = new Stack<>();
         stack.push(tree);
         while (!stack.isEmpty()) {
-            TreeNode pop = stack.pop();
-            List<TreeNode> children = pop.getChildren();
+            MultiWayTreeNode pop = stack.pop();
+            List<MultiWayTreeNode> children = pop.getChildren();
             if (children == null || children.isEmpty()) {
                 continue;
             }
@@ -34,12 +35,12 @@ public class TreeSort {
             stack.addAll(children);
         }
     }
-    private static void sortTreeWithStack1(TreeNode tree) {
-        Stack<TreeNode> stack = new Stack<>();
+    private static void sortTreeWithStack1(MultiWayTreeNode tree) {
+        Stack<MultiWayTreeNode> stack = new Stack<>();
         stack.push(tree);
         while (!stack.isEmpty()) {
-            TreeNode pop = stack.pop();
-            List<TreeNode> children = pop.getChildren();
+            MultiWayTreeNode pop = stack.pop();
+            List<MultiWayTreeNode> children = pop.getChildren();
             if (children == null || children.isEmpty()) {
                 continue;
             }
@@ -53,13 +54,13 @@ public class TreeSort {
      *
      * @param tree
      */
-    private static void sortTreeWithRecursion(TreeNode tree) {
+    private static void sortTreeWithRecursion(MultiWayTreeNode tree) {
 
         if (tree == null) {
             throw new NullPointerException();
         }
 
-        List<TreeNode> children = tree.getChildren();
+        List<MultiWayTreeNode> children = tree.getChildren();
         if (Objects.isNull(children) || children.isEmpty()) {
 
             return;
@@ -71,13 +72,13 @@ public class TreeSort {
 
     public static void main(String[] args) {
         Long start = System.currentTimeMillis();
-        TreeNode clone = SerializationUtils.clone(tree);
+        MultiWayTreeNode clone = SerializationUtils.clone(tree);
         long cloneEnd = LogUtil.logCost("clone", start);
         sortTreeWithStack1(tree);
         long quickSort = LogUtil.logCost("quick sort", cloneEnd);
         sortTreeWithStack(clone);
         long stack_sort = LogUtil.logCost("stack sort", quickSort);
-        List<TreeNode> treeNodes = TreeNodePrepareUtil.tree2FlatList(tree);
+        List<MultiWayTreeNode> treeNodes = TreeUtils.tree2FlatList(tree);
         LogUtil.logCost("tree to flat list", stack_sort);
         System.out.println("tree node size is : " + treeNodes.size());
 
