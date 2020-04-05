@@ -27,16 +27,8 @@ public abstract class AbstractNode<T extends AbstractNode> implements Node<T> {
         return parentId;
     }
 
-    public void setParentId(String parentId) {
-        this.parentId = parentId;
-    }
-
     public T getParent() {
         return parent;
-    }
-
-    public void setParent(T parent) {
-        this.parent = parent;
     }
 
     public String getId() {
@@ -45,6 +37,11 @@ public abstract class AbstractNode<T extends AbstractNode> implements Node<T> {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @Override
+    public int compareTo(MultiWayTreeNode o) {
+        return this.getName().compareToIgnoreCase(o.getName());
     }
 
     public String getName() {
@@ -56,17 +53,14 @@ public abstract class AbstractNode<T extends AbstractNode> implements Node<T> {
     }
 
     @Override
-    public int compareTo(MultiWayTreeNode o) {
-        return this.getName().compareToIgnoreCase(o.getName());
-    }
-
-    @Override
     public List<T> getChildren() {
         return children;
     }
 
     public void addChild(T child) {
-        children.add(child);
+        if (child != null) {
+            children.add(child);
+        }
     }
 
 

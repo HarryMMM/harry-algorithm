@@ -24,14 +24,12 @@ public class BinaryTreeNode extends AbstractNode<BinaryTreeNode> {
         this.right = right;
     }
 
+
+
     @Override
     public String toString() {
         return "BinaryTreeNode{" +
-                "left=" + (left == null ? "null" : left.id) +
-                ", right=" + (right == null ? "null" : right.id) +
-                ", id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", parentId='" + parentId + '\'' +
-                '}';
+                "name='" + name + '\'' +
+                '}' + "@" + Integer.toHexString(hashCode());
     }
 }
