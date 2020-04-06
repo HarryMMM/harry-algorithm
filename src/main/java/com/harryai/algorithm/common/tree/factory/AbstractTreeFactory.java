@@ -1,7 +1,7 @@
 package com.harryai.algorithm.common.tree.factory;
 
-import com.harryai.algorithm.Util.DataPrepareUtil;
-import com.harryai.algorithm.Util.RandomUtil;
+import com.harryai.algorithm.utlis.DataPrepareUtil;
+import com.harryai.algorithm.utlis.RandomUtil;
 import com.harryai.algorithm.common.tree.model.AbstractNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

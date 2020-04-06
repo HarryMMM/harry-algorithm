@@ -1,11 +1,9 @@
 package com.harryai.algorithm;
 
-import com.harryai.algorithm.Util.DataPrepareUtil;
-import com.harryai.algorithm.Util.RandomUtil;
+import com.harryai.algorithm.utlis.DataPrepareUtil;
+import com.harryai.algorithm.utlis.RandomUtil;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.DelayQueue;
 import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;

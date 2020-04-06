@@ -1,7 +1,7 @@
 package com.harryai.algorithm.common.tree.utils;
 
-import com.harryai.algorithm.Util.DataPrepareUtil;
-import com.harryai.algorithm.Util.RandomUtil;
+import com.harryai.algorithm.utlis.DataPrepareUtil;
+import com.harryai.algorithm.utlis.RandomUtil;
 import com.harryai.algorithm.common.tree.model.AbstractNode;
 import com.harryai.algorithm.common.tree.model.BinaryTreeNode;
 import org.apache.commons.collections4.CollectionUtils;
