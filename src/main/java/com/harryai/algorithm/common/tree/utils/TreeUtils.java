@@ -1,9 +1,9 @@
 package com.harryai.algorithm.common.tree.utils;
 
+import com.harryai.algorithm.common.tree.model.AbstractTreeNode;
+import com.harryai.algorithm.common.tree.model.BinaryTreeNode;
 import com.harryai.algorithm.utlis.DataPrepareUtil;
 import com.harryai.algorithm.utlis.RandomUtil;
-import com.harryai.algorithm.common.tree.model.AbstractNode;
-import com.harryai.algorithm.common.tree.model.BinaryTreeNode;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -162,7 +162,7 @@ public class TreeUtils {
      * @param tree 树
      * @return 树的平表
      */
-    public static <T extends AbstractNode<T>> List<T> tree2FlatList(T tree) {
+    public static <T extends AbstractTreeNode<T>> List<T> tree2FlatList(T tree) {
         List<T> res = new ArrayList<>();
         LinkedList<T> treeNodes = new LinkedList<>();
         treeNodes.add(tree);
@@ -183,7 +183,7 @@ public class TreeUtils {
      *
      * @param rootNode 树节点
      */
-    public static <T extends AbstractNode<T>> void smartPrintTree(T rootNode) {
+    public static <T extends AbstractTreeNode<T>> void smartPrintTree(T rootNode) {
         LinkedList<T> queue = new LinkedList<>();
         queue.push(rootNode);
         while (!queue.isEmpty()) {

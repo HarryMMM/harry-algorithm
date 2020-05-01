@@ -7,7 +7,8 @@ import java.util.List;
  * @author Harry
  * @since 2020/04/03 12:39
  **/
-public abstract class AbstractNode<T extends AbstractNode> implements Node<T> {
+public abstract class AbstractTreeNode<T extends AbstractTreeNode<T>> implements Node<T>,
+        Comparable<MultiWayTreeNode> {
     protected T parent;
     protected String id;
     protected String name;
@@ -52,7 +53,6 @@ public abstract class AbstractNode<T extends AbstractNode> implements Node<T> {
         this.name = name;
     }
 
-    @Override
     public List<T> getChildren() {
         return children;
     }

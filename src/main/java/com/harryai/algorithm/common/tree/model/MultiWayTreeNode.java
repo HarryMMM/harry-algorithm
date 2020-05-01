@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  * @author Harry
  * @since 2020/04/03 12:37
  **/
-public class MultiWayTreeNode extends AbstractNode<MultiWayTreeNode> {
+public class MultiWayTreeNode extends AbstractTreeNode<MultiWayTreeNode> {
 
 
     @Override

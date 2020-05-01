@@ -4,7 +4,7 @@ package com.harryai.algorithm.common.tree.model;
  * @author Harry
  * @since 2020/04/03 12:41
  **/
-public class BinaryTreeNode extends AbstractNode<BinaryTreeNode> {
+public class BinaryTreeNode extends AbstractTreeNode<BinaryTreeNode> {
     private BinaryTreeNode left;
     private BinaryTreeNode right;
 
