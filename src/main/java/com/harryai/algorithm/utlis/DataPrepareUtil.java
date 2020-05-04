@@ -65,7 +65,7 @@ public class DataPrepareUtil {
      * @return
      */
     public static int prepareOneNumberData(int length) {
-        return Integer.valueOf(peekEle(metaNumber, length).toString());
+        return Integer.parseInt(peekEle(metaNumber, length).toString());
     }
 
     /**
@@ -91,7 +91,7 @@ public class DataPrepareUtil {
         for (int i = 0; i < count; i++) {
             data.add(prepareOneNumberData(length));
         }
-        return data.toArray(new Integer[data.size()]);
+        return data.toArray(new Integer[0]);
     }
 }
 

@@ -1,6 +1,7 @@
 package com.harryai.algorithm.geekbang.TheBeautyOfDatastructuresAndAlgorithms;
 
-import java.util.Arrays;
+import com.harryai.algorithm.common.data.IntegerData;
+import com.harryai.algorithm.utlis.LogUtil;
 
 /**
  * @author Harry
@@ -8,10 +9,7 @@ import java.util.Arrays;
  **/
 public class SelectionSort {
     public static void main(String[] args) {
-        Integer[] arr = {11, 6, 3, 5, 4};
-        System.out.println(Arrays.toString(arr));
-        sort(arr);
-        System.out.println(Arrays.toString(arr));
+        LogUtil.logSort(IntegerData.ELE5_ARRAY_FIRST_2_SECOND_PLACE, SelectionSort::sort);
     }
 
     public static <T extends Comparable<T>> void sort(T[] arr) {

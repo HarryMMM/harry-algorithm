@@ -1,6 +1,8 @@
 package com.harryai.algorithm.geekbang.TheBeautyOfDatastructuresAndAlgorithms;
 
-import java.util.Arrays;
+import com.harryai.algorithm.common.data.IntegerData;
+import com.harryai.algorithm.utlis.LogUtil;
+
 
 /**
  * @author Harry
@@ -8,10 +10,7 @@ import java.util.Arrays;
  **/
 public class InsertSort {
     public static void main(String[] args) {
-        Integer[] arr = {11, 6, 3, 5, 4};
-        System.out.println(Arrays.toString(arr));
-        sort(arr);
-        System.out.println(Arrays.toString(arr));
+        LogUtil.logSort(IntegerData.ELE5_ARRAY_FIRST_2_SECOND_PLACE,InsertSort::sort2);
     }
 
     /**
@@ -43,6 +42,24 @@ public class InsertSort {
                 }
             }
             // 将当前数据插入
+            array[j + 1] = cur;
+        }
+    }
+
+    /**
+     * 精简
+     *
+     * @param array 要排序的数组
+     * @param <T> 指定的类型
+     */
+    public static <T extends Comparable<T>> void sort2(T[] array) {
+        int length = array.length;
+        for (int i = 1; i < length; i++) {
+            T cur = array[i];
+            int j = i - 1;
+            for (; j >= 0 && array[j].compareTo(cur) > 0; j--) {
+                array[j + 1] = array[j];
+            }
             array[j + 1] = cur;
         }
     }
