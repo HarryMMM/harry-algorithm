@@ -1,4 +1,4 @@
-package com.harryai.algorithm.geekbang.TheBeautyOfDatastructuresAndAlgorithms;
+package com.harryai.algorithm.sort;
 
 import com.harryai.algorithm.common.data.IntegerData;
 import com.harryai.algorithm.utlis.LogUtil;

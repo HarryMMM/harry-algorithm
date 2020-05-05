@@ -1,4 +1,4 @@
-package com.harryai.algorithm.geekbang.TheBeautyOfDatastructuresAndAlgorithms;
+package com.harryai.algorithm.reverse;
 
 import com.harryai.algorithm.common.tree.model.SimpleDataNode;
 

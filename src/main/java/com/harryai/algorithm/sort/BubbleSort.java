@@ -1,4 +1,4 @@
-package com.harryai.algorithm.selfstudy.sort;
+package com.harryai.algorithm.sort;
 
 import com.harryai.algorithm.utlis.DataPrepareUtil;
 import com.harryai.algorithm.utlis.RandomUtil;

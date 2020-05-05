@@ -1,4 +1,4 @@
-package com.harryai.algorithm.selfstudy.compare;
+package com.harryai.algorithm.compare;
 
 /**
  * @author Harry
