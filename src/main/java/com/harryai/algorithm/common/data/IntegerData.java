@@ -10,6 +10,14 @@ import com.harryai.algorithm.utlis.RandomUtil;
 public final class IntegerData {
     /**
      * 整形数据
+     * 元素个数：[5,10]
+     * 位数区间：[1,2]
+     */
+    public static final Integer[] ELE_RANDOM_FIVE_TO_TEN_ARRAY_FIRST_2_SECOND_PLACE =
+            DataPrepareUtil.prepareNumberData(RandomUtil.prepareInt(5, 11),
+                    RandomUtil.prepareInt(1, 3));
+    /**
+     * 整形数据
      * 元素个数：5
      * 位数区间：[1,2]
      */
