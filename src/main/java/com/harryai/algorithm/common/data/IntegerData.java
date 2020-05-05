@@ -15,6 +15,20 @@ public final class IntegerData {
      */
     public static final Integer[] ELE5_ARRAY_FIRST_2_SECOND_PLACE = DataPrepareUtil.prepareNumberData(5,
             RandomUtil.prepareInt(1, 3));
+    /**
+     * 整形数据
+     * 元素个数：10
+     * 位数区间：[1,2]
+     */
+    public static final Integer[] ELE10_ARRAY_FIRST_2_SECOND_PLACE = DataPrepareUtil.prepareNumberData(10,
+            RandomUtil.prepareInt(1, 3));
+    /**
+     * 整形数据
+     * 元素个数：10
+     * 位数区间：[1,1]
+     */
+    public static final Integer[] ELE10_ARRAY_FIRST_PLACE = DataPrepareUtil.prepareNumberData(10,
+            RandomUtil.prepareInt(1, 2));
 
     private IntegerData() {
     }
