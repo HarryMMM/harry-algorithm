@@ -28,6 +28,7 @@ public final class ArraySearch {
 
     /**
      * 查找第k个最大元素
+     * 时间复杂度O(n)
      *
      * @param arr 要查找的数据
      * @param k 指定k
