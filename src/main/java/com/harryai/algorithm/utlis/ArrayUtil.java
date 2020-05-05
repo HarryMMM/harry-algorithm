@@ -143,6 +143,52 @@ public class ArrayUtil {
 
     }
 
+    /**
+     * 将数组[left,right]分区，分区点为p，arr[p]
+     * 左侧区域arr[left,p-1]均小于arr[p],
+     * 右侧区域arr[p+1,right]均大于arr[p]
+     *
+     * @param arr 要分区的数组
+     * @param left 要要分区区域的起始位置分区区域的起始位置需要
+     * @param right 要分区区域的起始位置
+     * @param <T> 数组内元素
+     * @return 分区点p
+     */
+    public static <T extends Comparable<T>> int partition(T[] arr, int left, int right) {
+        // 取第一个数为基准数
+        T pivot = arr[left];
+        while (left < right) {
+            // 从后向前找比基准数小的数，两种情况：
+            // 1. 找到 则结束循环，此时left<right
+            // 2. 找不到，则向前移动指针,直到left>=right,跳出循环。
+            while (right > left && arr[right].compareTo(pivot) >= 0) {
+                --right;
+            }
+            // 上一步只有找到时，left才会小于right。
+            // 所以，如果left小于right,将找到的数据填入左侧的坑中。
+            if (left < right) {
+                arr[left] = arr[right];
+                // 此时，left 及left左边 的位置均已在 上一轮 查找过，所以向右移动指针。
+                ++left;
+            }
+            // 从前向后找比基准数大的数（只有找到并将左侧的坑填上后，当前动作。），两种情况：
+            // 1. 找到 则结束循环，此时left<right
+            // 2. 找不到，则向后移动指针,直到left>=right,跳出循环。
+            while (right > left && arr[left].compareTo(pivot) <= 0) {
+                ++left;
+            }
+            // 上一步只有找到时，left才会小于right。
+            // 所以，如果left小于right,将找到的数据填入左侧的坑中。
+            if (left < right) {
+                arr[right] = arr[left];
+                // 此时，right 及 right左边 的位置均已在 上一轮 查找过，所以向右移动指针。
+                --right;
+            }
+        }
+        arr[left] = pivot;
+        return left;
+    }
+
     private static <T extends Comparable<T>> boolean ascCompare(T[] arr1, int index1, T[] arr2, int index2) {
         return arr1[index1].compareTo(arr2[index2]) <= 0;
     }

@@ -1,6 +1,7 @@
 package com.harryai.algorithm.sort;
 
 import com.harryai.algorithm.common.data.IntegerData;
+import com.harryai.algorithm.utlis.ArrayUtil;
 import com.harryai.algorithm.utlis.LogUtil;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -51,45 +52,12 @@ public class QuickSort {
         }
         // 找出基准数据的位置 此时：
         // 基准数据 左侧所有数据均小于基准数据，右侧所有数据均大于基准数据。
-        int mid = partition(arr, left, right);
+        int mid = ArrayUtil.partition(arr, left, right);
         sort(arr, left, mid);
         sort(arr, mid + 1, right);
 
 
     }
 
-    private static <T extends Comparable<T>> int partition(T[] arr, int left, int right) {
-        // 取第一个数为基准数
-        T pivot = arr[left];
-        while (left < right) {
-            // 从后向前找比基准数小的数，两种情况：
-            // 1. 找到 则结束循环，此时left<right
-            // 2. 找不到，则向前移动指针,直到left>=right,跳出循环。
-            while (right > left && arr[right].compareTo(pivot) >= 0) {
-                --right;
-            }
-            // 上一步只有找到时，left才会小于right。
-            // 所以，如果left小于right,将找到的数据填入左侧的坑中。
-            if (left < right) {
-                arr[left] = arr[right];
-                // 此时，left 及left左边 的位置均已在 上一轮 查找过，所以向右移动指针。
-                ++left;
-            }
-            // 从前向后找比基准数大的数（只有找到并将左侧的坑填上后，当前动作。），两种情况：
-            // 1. 找到 则结束循环，此时left<right
-            // 2. 找不到，则向后移动指针,直到left>=right,跳出循环。
-            while (right > left && arr[left].compareTo(pivot) <= 0) {
-                ++left;
-            }
-            // 上一步只有找到时，left才会小于right。
-            // 所以，如果left小于right,将找到的数据填入左侧的坑中。
-            if (left < right) {
-                arr[right] = arr[left];
-                // 此时，right 及 right左边 的位置均已在 上一轮 查找过，所以向右移动指针。
-                --right;
-            }
-        }
-        arr[left] = pivot;
-        return left;
-    }
+
 }
