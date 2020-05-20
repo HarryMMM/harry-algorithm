@@ -156,7 +156,8 @@ public class ArrayUtil {
      */
     public static <T extends Comparable<T>> int partition(T[] arr, int left, int right) {
         // 取第一个数为基准数
-        T pivot = arr[left];
+        T pivot = threeNumPivot(arr, left, right);
+//        T pivot = arr[left];
         while (left < right) {
             // 从后向前找比基准数小的数，两种情况：
             // 1. 找到 则结束循环，此时left<right
@@ -189,6 +190,12 @@ public class ArrayUtil {
         return left;
     }
 
+    public static <T> void swap(T[] data, int firstIndex, int secondIndex) {
+        T tmp = data[firstIndex];
+        data[firstIndex] = data[secondIndex];
+        data[secondIndex] = tmp;
+    }
+
     private static <T extends Comparable<T>> boolean ascCompare(T[] arr1, int index1, T[] arr2, int index2) {
         return arr1[index1].compareTo(arr2[index2]) <= 0;
     }
@@ -203,6 +210,29 @@ public class ArrayUtil {
 
     private static <T extends Comparable<T>> boolean descCompare(T[] arr, int index1, int index2) {
         return arr[index1].compareTo(arr[index2]) >= 0;
+    }
+
+    private static <T> T randomPivot(T[] data, int left, int right) {
+        int randomIndex = RandomUtil.prepareInt(left, right + 1);
+        swap(data, left, randomIndex);
+        return data[left];
+    }
+
+    private static <T extends Comparable<T>> T threeNumPivot(T[] data, int left, int right) {
+        int mid = left + ((right - left) >> 1);
+        // 使right元素大于mid元素
+        if (data[mid].compareTo(data[right]) > 0) {
+            swap(data, mid, right);
+        }
+        // 使right元素大于left
+        if (data[left].compareTo(data[right]) > 0) {
+            swap(data, mid, right);
+        }
+        // 此时right最大，只需要比较left和mid,哪个大则哪个为中值。放入left中
+        if (data[mid].compareTo(data[left]) > 0) {
+            swap(data, mid, right);
+        }
+        return data[left];
     }
 
 }
