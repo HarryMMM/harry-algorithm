@@ -1,4 +1,4 @@
-package com.harryai.algorithm.geekbang.ProgrammerMathClass;
+package com.harryai.algorithm.geekbang;
 
 /**
  * @author Harry

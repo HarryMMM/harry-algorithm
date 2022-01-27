@@ -1,4 +1,4 @@
-package com.harryai.algorithm.sort;
+package com.harryai.algorithm.practicing.sort;
 
 import com.harryai.algorithm.common.data.IntegerData;
 import com.harryai.algorithm.utlis.ArrayUtil;

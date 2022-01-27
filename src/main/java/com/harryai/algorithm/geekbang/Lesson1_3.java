@@ -1,6 +1,6 @@
-package com.harryai.algorithm.geekbang.ProgrammerMathClass;
+package com.harryai.algorithm.geekbang;
 
-import static com.harryai.algorithm.geekbang.ProgrammerMathClass.Lesson1_1.decimalToBinary;
+import static com.harryai.algorithm.geekbang.Lesson1_1.decimalToBinary;
 
 /**
  * 位“或” 位“与” 位“异或”

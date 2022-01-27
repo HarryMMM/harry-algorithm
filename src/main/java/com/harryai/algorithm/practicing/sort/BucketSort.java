@@ -1,4 +1,4 @@
-package com.harryai.algorithm.sort;
+package com.harryai.algorithm.practicing.sort;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;

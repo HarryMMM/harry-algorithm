@@ -1,4 +1,4 @@
-package com.harryai.algorithm.search;
+package com.harryai.algorithm.practicing.search;
 
 import com.harryai.algorithm.utlis.ArrayUtil;
 

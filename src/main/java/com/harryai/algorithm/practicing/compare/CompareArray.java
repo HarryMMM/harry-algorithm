@@ -1,4 +1,4 @@
-package com.harryai.algorithm.compare;
+package com.harryai.algorithm.practicing.compare;
 
 /**
  * @author Harry

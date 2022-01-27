@@ -1,4 +1,4 @@
-package com.harryai.algorithm.geekbang.ProgrammerMathClass;
+package com.harryai.algorithm.geekbang;
 
 import com.harryai.algorithm.utlis.LogUtil;
 import lombok.Data;

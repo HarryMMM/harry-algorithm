@@ -1,4 +1,4 @@
-package com.harryai.algorithm.reverse;
+package com.harryai.algorithm.practicing.reverse;
 
 /**
  * @author Harry
