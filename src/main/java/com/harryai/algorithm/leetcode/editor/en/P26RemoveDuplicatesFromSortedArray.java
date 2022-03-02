@@ -66,14 +66,14 @@
 
 package com.harryai.algorithm.leetcode.editor.en;
 
-import org.springframework.util.Assert;
-
 //java:Remove Duplicates from Sorted Array
 public class P26RemoveDuplicatesFromSortedArray {
     public static void main(String[] args) {
         Solution solution = new P26RemoveDuplicatesFromSortedArray().new Solution();
-        int[] nums = new int[]{1, 2};
-        int[] expectedNums = new int[]{1, 2};
+        int[] nums = new int[]{1};
+        int[] expectedNums = new int[]{1};
+//        int[] nums = new int[]{1, 2};
+//        int[] expectedNums = new int[]{1, 2};
 //        int[] nums = new int[]{1, 1, 1, 2, 3, 4, 4, 5, 6, 6};
 //        int[] expectedNums = new int[]{1, 2, 3, 4, 5, 6};
         int k = solution.removeDuplicates(nums);
@@ -90,15 +90,10 @@ public class P26RemoveDuplicatesFromSortedArray {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int removeDuplicates(int[] nums) {
-            if (nums == null || nums.length == 0) {
-                return 0;
-            }
-            int l;
-            int r;
-            for (l = 0, r = 1; r < nums.length; r++) {
+            int l = 0;
+            for (int r = 1; r < nums.length; r++) {
                 if (nums[l] < nums[r]) {
-                    nums[l + 1] = nums[r];
-                    l++;
+                    nums[++l] = nums[r];
                 }
             }
             return l + 1;
