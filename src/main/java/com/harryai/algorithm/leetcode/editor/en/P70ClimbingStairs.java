@@ -45,12 +45,15 @@ public class P70ClimbingStairs {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int climbStairs(int n) {
-            long l = System.currentTimeMillis();
-            System.out.println("start:" + l);
-            int[] aa = new int[n];
-            int i = calc(n, aa);
-            System.out.println("end:" + (System.currentTimeMillis() - l));
-            return i;
+            int p = 0;
+            int q = 0;
+            int r = 1;
+            for (int i = 1; i <= n; i++) {
+                p = q;
+                q = r;
+                r = p + q;
+            }
+            return r;
         }
 
         public int calc(int n, int[] aa) {
