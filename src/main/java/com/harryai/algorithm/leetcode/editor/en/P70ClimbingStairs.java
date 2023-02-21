@@ -39,23 +39,33 @@ package com.harryai.algorithm.leetcode.editor.en;
 public class P70ClimbingStairs {
     public static void main(String[] args) {
         Solution solution = new P70ClimbingStairs().new Solution();
-        System.out.println(solution.climbStairs(0));
-        System.out.println(solution.climbStairs(1));
-        System.out.println(solution.climbStairs(2));
-        System.out.println(solution.climbStairs(3));
-        System.out.println(solution.climbStairs(4));
+        System.out.println(solution.climbStairs(44));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int climbStairs(int n) {
+            long l = System.currentTimeMillis();
+            System.out.println("start:" + l);
+            int[] aa = new int[n];
+            int i = calc(n, aa);
+            System.out.println("end:" + (System.currentTimeMillis() - l));
+            return i;
+        }
+
+        public int calc(int n, int[] aa) {
+            if (aa[n-1]!=0) {
+                return aa[n-1];
+            }
             if (n == 1) {
                 return 1;
             }
             if (n == 2) {
                 return 2;
             }
-            return climbStairs(n - 1) + climbStairs(n - 2);
+            int i = calc(n - 1, aa) + calc(n - 2, aa);
+            aa[n-1] = i;
+            return i;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
