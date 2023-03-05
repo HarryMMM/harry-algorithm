@@ -65,20 +65,31 @@ public class P110BalancedBinaryTree {
      */
     class Solution {
         public boolean isBalanced(TreeNode root) {
-            if (root == null) {
-                return true;
-            }
-            int max = height(root.left);
-            int mix = height(root.right);
-            return Math.abs(max - mix) <= 1 && isBalanced(root.right) && isBalanced(root.left);
+            // 没有返回-1，则为平衡数
+            return height(root) >=0;
         }
 
         private int height(TreeNode root) {
-            if (null == root) {
+            // 空树，返回0
+            if (root == null) {
                 return 0;
             }
+
             int l = height(root.left);
+            // 左子树不平衡，当前树不平衡
+            if (l == -1) {
+                return -1;
+            }
             int r = height(root.right);
+            // 右子树不平衡，当前数不平衡
+            if (r == -1) {
+                return -1;
+            }
+            // 左右子树树高差值大于1，当前数不平衡
+            if (Math.abs(l - r) > 1) {
+                return -1;
+            }
+            // 当前数平衡，返回树高
             return Math.max(l, r) + 1;
         }
     }
