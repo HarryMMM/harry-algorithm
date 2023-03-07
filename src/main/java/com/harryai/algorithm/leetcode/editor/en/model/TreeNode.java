@@ -32,33 +32,6 @@ public class TreeNode {
         this.right = right;
     }
 
-    public TreeNode getLeft() {
-        return left;
-    }
-
-    public TreeNode setLeft(TreeNode left) {
-        this.left = left;
-        return this;
-    }
-
-    public TreeNode getRight() {
-        return right;
-    }
-
-    public TreeNode setRight(TreeNode right) {
-        this.right = right;
-        return this;
-    }
-
-    public int getIndex() {
-        return index;
-    }
-
-    public TreeNode setIndex(int index) {
-        this.index = index;
-        return this;
-    }
-
     @Override
     public String toString() {
         return String.valueOf(val);
