@@ -77,25 +77,12 @@ public class P112PathSum {
             if (root == null) {
                 return false;
             }
-            return ha(root, targetSum, 0);
-        }
-
-        public boolean ha(TreeNode root, int targetSum, int currentSum) {
-            currentSum = currentSum + root.val;
-            // 如果当前是叶子节点，判断当前的和是否用于目标和
-            if (root.left == null && root.right == null) {
-                return currentSum == targetSum;
-                // 如果不是叶子且存在左右子树，递归判断左右子树
-            } else if (root.left != null && root.right != null) {
-                return ha(root.left, targetSum, currentSum) || ha(root.right, targetSum,
-                        currentSum);
-                // 如果不是叶子且存在左子树，递归判断左子树
-            } else if (root.left != null) {
-                return ha(root.left, targetSum, currentSum);
-                // 如果不是叶子且存在右子树，递归判断右子树
-            } else {
-                return ha(root.right, targetSum, currentSum);
+            // 叶子节点，判断结果
+            if (root.right == null && root.left == null) {
+                return targetSum == root.val;
             }
+            // 不是叶子节点，当前根节点至少有一个子树。只要有一个子树，都不能计算结果，需要继续递归
+            return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val);
         }
 
 
