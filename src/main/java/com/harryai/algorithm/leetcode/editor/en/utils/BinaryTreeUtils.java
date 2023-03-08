@@ -25,7 +25,7 @@ public class BinaryTreeUtils {
             if (j < nums.length ) {
                 if (nums[j] != null) {
                     TreeNode left = new TreeNode(nums[j]);
-                    root.setLeft(left);
+                    root.left = left;
                     map.put(j, left);
                 }
                 j++;
@@ -33,7 +33,7 @@ public class BinaryTreeUtils {
             if (j < nums.length) {
                 if (nums[j] != null) {
                     TreeNode right = new TreeNode(nums[j]);
-                    root.setRight(right);
+                    root.right = right;
                     map.put(j, right);
                 }
                 j++;
