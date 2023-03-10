@@ -42,16 +42,12 @@ public class P119PascalsTriangleIi {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        // C(n,m)=C(n-1,m)+C(n-1,m-1)
-        // 因为当前数等于上一行的当前数加前一个数，为了数据不被覆盖，就需要从后往前算，
+        // 按相邻组合数关系求解 C(n,m) =C(n,m-1)*(n-m+1)/m
         public List<Integer> getRow(int rowIndex) {
             List<Integer> row = new ArrayList<>();
             row.add(1);
             for (int i = 1; i <= rowIndex; i++) {
-                row.add(0);
-                for (int j = i; j > 0; j--) {
-                    row.set(j, row.get(j) + row.get(j - 1));
-                }
+                row.add((int)((long)row.get(i - 1) * (rowIndex - i + 1) / i));
             }
             return row;
         }
