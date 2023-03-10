@@ -42,21 +42,18 @@ public class P119PascalsTriangleIi {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        // C(n,m)法，使用阶乘算得
+        // C(n,m)=C(n-1,m)+C(n-1,m-1)
+        // 因为当前数等于上一行的当前数加前一个数，为了数据不被覆盖，就需要从后往前算，
         public List<Integer> getRow(int rowIndex) {
-            List<Integer> pre = new ArrayList<>(1);
-            for (int i = 0; i <= rowIndex; i++) {
-                List<Integer> row = new ArrayList<>(i + 1);
-                for (int j = 0; j <= i; j++) {
-                    if (j==0||j==i){
-                        row.add(1);
-                    }else {
-                        row.add(pre.get(j) + pre.get(j - 1));
-                    }
+            List<Integer> row = new ArrayList<>();
+            row.add(1);
+            for (int i = 1; i <= rowIndex; i++) {
+                row.add(0);
+                for (int j = i; j > 0; j--) {
+                    row.set(j, row.get(j) + row.get(j - 1));
                 }
-                pre = row;
             }
-            return pre;
+            return row;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
