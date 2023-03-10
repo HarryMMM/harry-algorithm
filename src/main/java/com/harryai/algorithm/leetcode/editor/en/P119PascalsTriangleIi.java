@@ -31,7 +31,6 @@ package com.harryai.algorithm.leetcode.editor.en;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 //java:Pascal's Triangle II
@@ -45,19 +44,19 @@ public class P119PascalsTriangleIi {
     class Solution {
         // C(n,m)法，使用阶乘算得
         public List<Integer> getRow(int rowIndex) {
-            List<List<Integer>> c = new ArrayList<List<Integer>>();
+            List<Integer> pre = new ArrayList<>(1);
             for (int i = 0; i <= rowIndex; i++) {
                 List<Integer> row = new ArrayList<>(i + 1);
                 for (int j = 0; j <= i; j++) {
                     if (j==0||j==i){
                         row.add(1);
                     }else {
-                        row.add(c.get(i-1).get(j)+c.get(i-1).get(j-1));
+                        row.add(pre.get(j) + pre.get(j - 1));
                     }
                 }
-                c.add(row);
+                pre = row;
             }
-            return c.get(rowIndex);
+            return pre;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
