@@ -27,6 +27,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.harryai.algorithm.utlis.MathUtils.factorial;
+
 //java:Pascal's Triangle
 public class P118PascalsTriangle {
     public static void main(String[] args) {
@@ -54,13 +56,6 @@ public class P118PascalsTriangle {
                 list.add(sub);
             }
             return list;
-        }
-
-        public BigDecimal factorial(int num, Map<Integer, BigDecimal> map) {
-            if (num == 1||num==0) {
-                return BigDecimal.ONE;
-            }
-            return map.computeIfAbsent(num, key -> factorial(num - 1, map).multiply(new BigDecimal(num)));
         }
 
 //        public List<List<Integer>> generate(int numRows) {
