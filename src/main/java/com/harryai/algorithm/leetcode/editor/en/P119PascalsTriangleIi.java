@@ -30,11 +30,9 @@
 package com.harryai.algorithm.leetcode.editor.en;
 
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 //java:Pascal's Triangle II
 public class P119PascalsTriangleIi {
@@ -47,22 +45,19 @@ public class P119PascalsTriangleIi {
     class Solution {
         // C(n,m)法，使用阶乘算得
         public List<Integer> getRow(int rowIndex) {
-            int rowNum = rowIndex + 1;
-            List<Integer> l = new ArrayList<>();
-            Map<Integer, BigDecimal> map = new HashMap<>(rowIndex);
-            for (int columnIndex = 0; columnIndex < rowNum; columnIndex++) {
-                BigDecimal multiply =
-                        factorial(columnIndex, map).multiply(factorial(rowIndex - columnIndex,
-                                map));
-                l.add(factorial(rowIndex,map).divide(multiply).intValue());
+            List<List<Integer>> c = new ArrayList<List<Integer>>();
+            for (int i = 0; i <= rowIndex; i++) {
+                List<Integer> row = new ArrayList<>(i + 1);
+                for (int j = 0; j <= i; j++) {
+                    if (j==0||j==i){
+                        row.add(1);
+                    }else {
+                        row.add(c.get(i-1).get(j)+c.get(i-1).get(j-1));
+                    }
+                }
+                c.add(row);
             }
-            return l;
-        }
-        public  BigDecimal factorial(int num, Map<Integer, BigDecimal> map) {
-            if (num == 1||num==0) {
-                return BigDecimal.ONE;
-            }
-            return map.computeIfAbsent(num, key -> factorial(num - 1, map).multiply(new BigDecimal(num)));
+            return c.get(rowIndex);
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
