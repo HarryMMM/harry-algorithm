@@ -42,16 +42,18 @@
 //java:Add Two Numbers
 package com.harryai.algorithm.leetcode.editor.en;
 
+import com.harryai.algorithm.common.linkedlist.ListNode;
+
 public class P2AddTwoNumbers {
     public static void main(String[] args) {
         Solution solution = new P2AddTwoNumbers().new Solution();
-        ListNode l1 = new P2AddTwoNumbers().new ListNode(2);
-        ListNode l11 = l1.next = new P2AddTwoNumbers().new ListNode(4);
-        ListNode l12 = l11.next = new P2AddTwoNumbers().new ListNode(3);
-        ListNode l2 = new P2AddTwoNumbers().new ListNode(5);
-        ListNode l21 = l2.next = new P2AddTwoNumbers().new ListNode(6);
-        ListNode l22 = l21.next = new P2AddTwoNumbers().new ListNode(4);
-        ListNode l23 = l22.next = new P2AddTwoNumbers().new ListNode(5);
+        ListNode l1 = new ListNode(2);
+        ListNode l11 = l1.next = new ListNode(4);
+        ListNode l12 = l11.next = new ListNode(3);
+        ListNode l2 = new ListNode(5);
+        ListNode l21 = l2.next = new ListNode(6);
+        ListNode l22 = l21.next = new ListNode(4);
+        ListNode l23 = l22.next = new ListNode(5);
 
 
         ListNode listNode = solution.addTwoNumbers(l1, l2);
@@ -93,20 +95,4 @@ public class P2AddTwoNumbers {
     }
 
     //leetcode submit region end(Prohibit modification and deletion)
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 }

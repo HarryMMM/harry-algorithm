@@ -28,6 +28,8 @@
 
 package com.harryai.algorithm.leetcode.editor.en;
 
+import com.harryai.algorithm.common.linkedlist.ListNode;
+
 //java:Remove Duplicates from Sorted List
 public class P83RemoveDuplicatesFromSortedList {
     public static void main(String[] args) {
@@ -42,22 +44,6 @@ public class P83RemoveDuplicatesFromSortedList {
 
     }
 
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
     //leetcode submit region begin(Prohibit modification and deletion)
 
     /**

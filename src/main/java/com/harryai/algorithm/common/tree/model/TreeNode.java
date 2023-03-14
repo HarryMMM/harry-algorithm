@@ -1,4 +1,4 @@
-package com.harryai.algorithm.leetcode.editor.en.model;
+package com.harryai.algorithm.common.tree.model;
 
 /**
  * <p>

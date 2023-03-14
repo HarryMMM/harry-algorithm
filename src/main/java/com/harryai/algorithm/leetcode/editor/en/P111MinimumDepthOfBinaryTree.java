@@ -32,8 +32,8 @@
 
 package com.harryai.algorithm.leetcode.editor.en;
 
-import com.harryai.algorithm.leetcode.editor.en.model.TreeNode;
-import com.harryai.algorithm.leetcode.editor.en.utils.BinaryTreeUtils;
+import com.harryai.algorithm.common.tree.model.TreeNode;
+import com.harryai.algorithm.common.tree.utils.BinaryTreeUtils;
 
 //java:Minimum Depth of Binary Tree
 public class P111MinimumDepthOfBinaryTree {

@@ -1,6 +1,6 @@
-package com.harryai.algorithm.leetcode.editor.en.utils;
+package com.harryai.algorithm.common.tree.utils;
 
-import com.harryai.algorithm.leetcode.editor.en.model.TreeNode;
+import com.harryai.algorithm.common.tree.model.TreeNode;
 
 import java.util.HashMap;
 import java.util.Map;

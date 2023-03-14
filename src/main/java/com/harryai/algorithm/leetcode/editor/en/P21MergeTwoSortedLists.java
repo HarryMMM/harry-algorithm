@@ -39,6 +39,8 @@
 
 package com.harryai.algorithm.leetcode.editor.en;
 
+import com.harryai.algorithm.common.linkedlist.ListNode;
+
 //java:Merge Two Sorted Lists
 public class P21MergeTwoSortedLists {
     public static void main(String[] args) {
@@ -47,10 +49,10 @@ public class P21MergeTwoSortedLists {
 //                new P21MergeTwoSortedLists.ListNode(3));
 //        P21MergeTwoSortedLists.ListNode ln2 = new P21MergeTwoSortedLists.ListNode(5,
 //                new P21MergeTwoSortedLists.ListNode(7));
-        P21MergeTwoSortedLists.ListNode ln1 = new P21MergeTwoSortedLists.ListNode(1,
-                new P21MergeTwoSortedLists.ListNode(2, new P21MergeTwoSortedLists.ListNode(4)));
-        P21MergeTwoSortedLists.ListNode ln2 = new P21MergeTwoSortedLists.ListNode(1,
-                new P21MergeTwoSortedLists.ListNode(3, new P21MergeTwoSortedLists.ListNode(4)));
+        ListNode ln1 =new ListNode(1,
+                new ListNode(2, new ListNode(4)));
+       ListNode ln2 = new ListNode(1,
+              new  ListNode(3, new ListNode(4)));
         print(solution.mergeTwoLists(null, null));
         System.out.println();
         print(solution.mergeTwoLists(ln1, null));
@@ -98,22 +100,7 @@ public class P21MergeTwoSortedLists {
     }
 
     //leetcode submit region end(Prohibit modification and deletion)
-    public static class ListNode {
-        int val;
-        ListNode next;
 
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 
     public static void print(ListNode l) {
         if (l == null) {
