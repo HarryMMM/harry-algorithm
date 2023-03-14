@@ -15,12 +15,20 @@ public class ListNode {
     public ListNode() {
     }
 
-    public ListNode(int x) {
-        val = x;
+    public ListNode(int val) {
+        this.val = val;
         next = null;
     }
 
-    public ListNode(int x, ListNode listNode) {
+    public ListNode(int val, ListNode listNode) {
+        this.val = val;
+        this.next = listNode;
+    }
 
+    @Override
+    public String toString() {
+        return "ListNode{" +
+                "val=" + val +
+                '}';
     }
 }
