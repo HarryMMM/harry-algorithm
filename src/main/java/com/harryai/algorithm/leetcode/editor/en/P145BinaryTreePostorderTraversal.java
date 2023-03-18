@@ -40,6 +40,7 @@ package com.harryai.algorithm.leetcode.editor.en;
 
 import com.harryai.algorithm.common.tree.model.TreeNode;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //java:Binary Tree Postorder Traversal
@@ -65,7 +66,22 @@ public class P145BinaryTreePostorderTraversal{
  */
 class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
-        return null;
+        List<Integer> list = new ArrayList<>();
+        postorderTraversal(root, list);
+        return list;
+    }
+
+    public void postorderTraversal(TreeNode root, List<Integer> list) {
+        if (root == null) {
+            return;
+        }
+        // traverse left node
+        postorderTraversal(root.left, list);
+        // traverse right  node
+        postorderTraversal(root.right, list);
+        // traverse root node
+        list.add(root.val);
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
