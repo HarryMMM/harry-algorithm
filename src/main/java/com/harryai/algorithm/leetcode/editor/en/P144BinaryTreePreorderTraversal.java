@@ -39,14 +39,18 @@
 package com.harryai.algorithm.leetcode.editor.en;
 
 import com.harryai.algorithm.common.tree.model.TreeNode;
+import com.harryai.algorithm.common.tree.utils.BinaryTreeUtils;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 //java:Binary Tree Preorder Traversal
 public class P144BinaryTreePreorderTraversal {
     public static void main(String[] args) {
         Solution solution = new P144BinaryTreePreorderTraversal().new Solution();
+        System.out.println(solution.preorderTraversal(BinaryTreeUtils.arrays2Tree(new Integer[]{1, 4, 3, 2})));
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 
@@ -68,20 +72,40 @@ public class P144BinaryTreePreorderTraversal {
     class Solution {
         public List<Integer> preorderTraversal(TreeNode root) {
             List<Integer> a = new ArrayList<>();
-            preorderTraversal(root, a);
+            // if root is null,return an empty list.
+            if (root == null) {
+                return a;
+            }
+            // The purpose of the storage node is to retrieve the right subtree
+            Deque<TreeNode> stack = new LinkedList<>();
+            TreeNode cur = root;
+            while (cur != null) {
+                // record current node
+                a.add(cur.val);
+                // if the left subtree of current node is not null,
+                // save the current node into the stack so that the right subtree
+                // can be retrieved.
+                if (cur.left != null) {
+                    stack.push(cur);
+                    cur = cur.left;
+                    // If the right subtree is not null ,set it as the current tree
+                } else if (cur.right != null) {
+                    cur = cur.right;
+                } else {
+                    // If the stack is not empty ,pop up a non-null node and set it as the current node .
+                    // Otherwise,set the current node to null.
+                    cur = null;
+                    while (!stack.isEmpty()) {
+                        TreeNode pop = stack.pop();
+                        cur = pop.right;
+                        if (cur != null) {
+                            break;
+                        }
+                    }
+                }
+            }
             return a;
         }
-
-        public void preorderTraversal(TreeNode root, List<Integer> list) {
-            if (root == null) {
-                return;
-            }
-            list.add(root.val);
-            preorderTraversal(root.left, list);
-            preorderTraversal(root.right, list);
-
-        }
-
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
