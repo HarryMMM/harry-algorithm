@@ -72,38 +72,26 @@ public class P144BinaryTreePreorderTraversal {
     class Solution {
         public List<Integer> preorderTraversal(TreeNode root) {
             List<Integer> a = new ArrayList<>();
-            // if root is null,return an empty list.
-            if (root == null) {
-                return a;
-            }
-            // The purpose of the storage node is to retrieve the right subtree
+            // Save current node so that its right subtree can be taken out.
             Deque<TreeNode> stack = new LinkedList<>();
             TreeNode cur = root;
-            while (cur != null) {
-                // record current node
-                a.add(cur.val);
-                // if the left subtree of current node is not null,
-                // save the current node into the stack so that the right subtree
-                // can be retrieved.
-                if (cur.left != null) {
+            // If cur or stack is not empty ,it means that the binary tree
+            // has not been traversal yet.
+            while (cur != null || !stack.isEmpty()) {
+                // If cur is not empty ,continue to traverse its left subtree
+                // and push it into stack so that its right can be taken out.
+                if (cur != null) {
+                    a.add(cur.val);
                     stack.push(cur);
                     cur = cur.left;
-                    // If the right subtree is not null ,set it as the current tree
-                } else if (cur.right != null) {
-                    cur = cur.right;
-                } else {
-                    // If the stack is not empty ,pop up a non-null node and set it as the current node .
-                    // Otherwise,set the current node to null.
-                    cur = null;
-                    while (!stack.isEmpty()) {
-                        TreeNode pop = stack.pop();
-                        cur = pop.right;
-                        if (cur != null) {
-                            break;
-                        }
-                    }
+                } else { // if cur is empty but stack is not empty,
+                    // take its parent node from stack,then traverse
+                    // the right subtree of its parent node
+                    cur = stack.pop().right;
                 }
+
             }
+            // return results
             return a;
         }
     }
