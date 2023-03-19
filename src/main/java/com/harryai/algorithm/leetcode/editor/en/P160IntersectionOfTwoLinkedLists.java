@@ -98,8 +98,8 @@ package com.harryai.algorithm.leetcode.editor.en;
 
 import com.harryai.algorithm.common.linkedlist.ListNode;
 
-import java.util.Deque;
-import java.util.LinkedList;
+import java.util.HashSet;
+import java.util.Set;
 
 //java:Intersection of Two Linked Lists
 public class P160IntersectionOfTwoLinkedLists {
@@ -121,31 +121,18 @@ public class P160IntersectionOfTwoLinkedLists {
      */
     public class Solution {
         public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-            // Compare the nodes of two linked lists from the back to the front,
-            // if they are not the same,return the previous same node;
-            Deque<ListNode> stackA = new LinkedList<>();
-            Deque<ListNode> stackB = new LinkedList<>();
-            while (headA != null || headB != null) {
-                if (headA != null) {
-                    stackA.push(headA);
-                    headA = headA.next;
-                }
-                if (headB != null) {
-                    stackB.push(headB);
-                    headB = headB.next;
-                }
+            Set<ListNode> map = new HashSet<>();
+            while (headA != null) {
+                map.add(headA);
+                headA = headA.next;
             }
-            ListNode pre = null;
-            while (!stackA.isEmpty() && !stackB.isEmpty()) {
-                ListNode popA = stackA.pop();
-                ListNode popB = stackB.pop();
-                if (popA != popB) {
-                    break;
-                } else {
-                    pre = popA;
+            while (headB != null) {
+                if (map.contains(headB)) {
+                    return headB;
                 }
+                headB=headB.next;
             }
-            return pre;
+            return null;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
