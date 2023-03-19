@@ -98,13 +98,22 @@ package com.harryai.algorithm.leetcode.editor.en;
 
 import com.harryai.algorithm.common.linkedlist.ListNode;
 
-import java.util.HashSet;
-import java.util.Set;
-
 //java:Intersection of Two Linked Lists
 public class P160IntersectionOfTwoLinkedLists {
     public static void main(String[] args) {
         Solution solution = new P160IntersectionOfTwoLinkedLists().new Solution();
+        ListNode intersection = new ListNode(6);
+
+        ListNode a2 = new ListNode(2);
+        a2.next = intersection;
+        ListNode a1 = new ListNode(1);
+        a1.next = a2;
+
+        ListNode b1 = new ListNode(4);
+        b1.next = intersection;
+        System.out.println(solution.getIntersectionNode(a1, b1));
+
+
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 
@@ -121,18 +130,20 @@ public class P160IntersectionOfTwoLinkedLists {
      */
     public class Solution {
         public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-            Set<ListNode> map = new HashSet<>();
-            while (headA != null) {
-                map.add(headA);
-                headA = headA.next;
+            // 任一为null,无交点。
+            if (headA == null || headB == null) {
+                return null;
             }
-            while (headB != null) {
-                if (map.contains(headB)) {
-                    return headB;
-                }
-                headB=headB.next;
+
+            // 双指针每个指针遍历以便 headA和headB,它们必然在同一时刻相等，
+            // 如果都为null，表示无交点，否则，有交点。
+            // 之所以，pa和pb为null后在去对方的链表，是希望通过都为null时来判断当前链表无交点。
+            ListNode pa = headA, pb = headB;
+            while (pa != pb) {
+                pa = pa == null ? headB : pa.next;
+                pb = pb == null ? headA : pb.next;
             }
-            return null;
+            return pa;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
