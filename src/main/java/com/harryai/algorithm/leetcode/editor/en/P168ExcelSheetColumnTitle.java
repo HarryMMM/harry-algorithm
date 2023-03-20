@@ -51,41 +51,24 @@ package com.harryai.algorithm.leetcode.editor.en;
 public class P168ExcelSheetColumnTitle {
     public static void main(String[] args) {
         Solution solution = new P168ExcelSheetColumnTitle().new Solution();
-        System.out.println(solution.convertToTitle(1));
-        System.out.println(solution.convertToTitle(28));
-        System.out.println(solution.convertToTitle(701));
+//        System.out.println(solution.convertToTitle(1));
+        System.out.println(solution.convertToTitle(2147483647));
+//        System.out.println(solution.convertToTitle(701));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public String convertToTitle(int columnNumber) {
-            String[] dict = {"A", "B", "C", "D", "E", "F", "G",
-                    "H", "I", "J", "K", "L", "M", "N",
-                    "O", "P", "Q", "R", "S", "T", "U",
-                    "V", "W", "X", "Y", "Z"};
-            int length = dict.length;
-            int quotient = columnNumber / length;
-            int remainder = columnNumber % length;
-            StringBuilder res = new StringBuilder();
-            // if the quotient or remainder is not 0
-            // we need to continue processing,
-            while (quotient > 0 || remainder > 0) {
-                String subStr;
-                // if remainder is 0,take the string Z,and
-                // the quotient needs to abdicate.
-                if (remainder == 0) {
-                    // take string Z
-                    subStr = dict[length - 1];
-                    remainder = (quotient - 1) % length;
-                    quotient = (quotient - 1) / length;
-                } else {
-                    subStr = dict[remainder - 1];
-                    remainder = (quotient) % length;
-                    quotient = (quotient) / length;
-                }
-                res.insert(0, subStr);
+            StringBuffer sb = new StringBuffer();
+            while (columnNumber > 0) {
+                // 余数为0需要从商退一位，这么计算不用退位了
+                int re = (columnNumber - 1) % 26 + 1;
+                // 使用ASCII取字母A-Z
+                sb.append((char) ((re - 1) + 'A'));
+                // 下一位需要计算的数是减去余数后除以26的商
+                columnNumber = (columnNumber - re) / 26;
             }
-            return res.toString();
+            return sb.reverse().toString();
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
