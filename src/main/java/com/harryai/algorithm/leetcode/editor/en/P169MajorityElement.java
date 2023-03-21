@@ -30,6 +30,8 @@
 
 package com.harryai.algorithm.leetcode.editor.en;
 
+import java.util.Arrays;
+
 //java:Majority Element
 public class P169MajorityElement {
     public static void main(String[] args) {
@@ -40,16 +42,9 @@ public class P169MajorityElement {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int majorityElement(int[] nums) {
-            // Boyer-Moore 投票算法
-            int count = 0;
-            Integer candidate = null;
-            for (int num : nums) {
-                if (count == 0) {
-                    candidate = num;
-                }
-                count += candidate == num ? 1 : -1;
-            }
-            return candidate;
+            Arrays.sort(nums);
+            // 由于最多的数大于n/2,那么，无论最多数在数组中排列在什么位置，它一定经过数组的中点
+            return nums[nums.length / 2];
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
