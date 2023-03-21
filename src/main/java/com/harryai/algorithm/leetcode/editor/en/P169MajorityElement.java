@@ -30,33 +30,39 @@
 
 package com.harryai.algorithm.leetcode.editor.en;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 
 //java:Majority Element
 public class P169MajorityElement {
     public static void main(String[] args) {
         Solution solution = new P169MajorityElement().new Solution();
+        System.out.println(solution.majorityElement(new int[]{3, 2, 3}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int majorityElement(int[] nums) {
-            Map<Integer, Integer> map = new HashMap<>();
-            for (int num : nums) {
-                map.put(num, map.containsKey(num) ? map.get(num) + 1 : 1);
-            }
-            int res = 0;
-            int count = 0;
-            for (Map.Entry<Integer, Integer> integerIntegerEntry : map.entrySet()) {
-                Integer value = integerIntegerEntry.getValue();
-                Integer key = integerIntegerEntry.getKey();
-                if (value > count) {
-                    count = value;
-                    res = key;
+            Arrays.sort(nums);
+            int maxCount = 1;
+            int maxNumber = nums[0];
+            int curCount = 1;
+            int curNum = nums[0];
+            for (int i = 1; i < nums.length; i++) {
+                // 遍历到的数字不是正在计数的数字
+                if (nums[i] != curNum) {
+                    // 重置计数
+                    curCount = 1;
+                    curNum = nums[i];
+                } else {
+                    curCount++;
+                }
+                // 比较下正在计数的数字的数量是否比之前记录的数字数量大
+                if (curCount > maxCount) {
+                    maxCount = curCount;
+                    maxNumber = curNum;
                 }
             }
-            return res;
+            return maxNumber;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
