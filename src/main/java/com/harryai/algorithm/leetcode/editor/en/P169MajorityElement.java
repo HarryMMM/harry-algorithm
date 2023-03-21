@@ -43,26 +43,8 @@ public class P169MajorityElement {
     class Solution {
         public int majorityElement(int[] nums) {
             Arrays.sort(nums);
-            int maxCount = 1;
-            int maxNumber = nums[0];
-            int curCount = 1;
-            int curNum = nums[0];
-            for (int i = 1; i < nums.length; i++) {
-                // 遍历到的数字不是正在计数的数字
-                if (nums[i] != curNum) {
-                    // 重置计数
-                    curCount = 1;
-                    curNum = nums[i];
-                } else {
-                    curCount++;
-                }
-                // 比较下正在计数的数字的数量是否比之前记录的数字数量大
-                if (curCount > maxCount) {
-                    maxCount = curCount;
-                    maxNumber = curNum;
-                }
-            }
-            return maxNumber;
+            // 由于最多的数大于n/2,那么，无论最多数在数组中排列在什么位置，它一定经过数组的中点
+            return nums[nums.length / 2];
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
