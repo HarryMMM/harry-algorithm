@@ -56,21 +56,38 @@ public class P190ReverseBits {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     public class Solution {
-        // you need treat n as an unsigned value
+        private static final int M1 = 0x55555555; // 01010101010101010101010101010101
+        private static final int M2 = 0x33333333; // 00110011001100110011001100110011
+        private static final int M4 = 0x0f0f0f0f; // 00001111000011110000111100001111
+        private static final int M8 = 0x00ff00ff; // 00000000111111110000000011111111
+
+        // 位分治。int一共32位，思路：
+        // 1). 奇偶交换
+        // 2). 2位一组交换
+        // 3). 4位一组交换
+        // 4). 8位一组交换
+        // 5). 16位一组交换
         public int reverseBits(int n) {
-            int res = 0;
-            // 循环32次或n=0（即没有所有位均为0，不需要再处理了）
-            for (int i = 0; i < 32 && n != 0; i++) {
-                // #1 将除最低位的其它位置为0
-                int a = (n & 1);
-                // #2 将最低位左移31-i位（与当前位置相对的颠倒位置）
-                int b = a << (31 - i);
-                // #3 使用或位运算将结果放置到res对应的位上
-                res |= b;
-                // #4 使用右移将n的下一位至于最低位
-                n = n >>> 1;
-            }
-            return res;
+            // 1). 奇偶交换
+            // 提取奇数位，并变为新的偶数位
+            // 1.1 n>>>1 奇变偶（从左往右，最高位当做奇数位）
+            // 1.2 &M1 使用M1将新的奇数位置为0（此时的奇数位为原偶数位，已经无用了)
+            // 提取偶数位，并变为新的奇数位
+            // 1.3 n & M1 ，将奇数位置为0
+            // 1.4 << 1 偶变奇
+            n = n >>> 1 & M1 | (n & M1) << 1;
+
+            // 2). 2位一组交换,逻辑同第一步
+            n = n >>> 2 & M2 | (n & M2) << 2;
+
+            // 3). 4位一组交换,逻辑同第一步
+            n = n >>> 4 & M4 | (n & M4) << 4;
+
+            // 4). 8位一组交换,逻辑同第一步
+            n = n >>> 8 & M8 | (n & M8) << 8;
+
+            // 5). 16位一组交换,逻辑同第一步
+            return n >>> 16 | n << 16;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
