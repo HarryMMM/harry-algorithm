@@ -43,10 +43,6 @@
 
 package com.harryai.algorithm.leetcode.editor.en;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
 //java:Happy Number
 public class P202HappyNumber {
     public static void main(String[] args) {
@@ -56,14 +52,26 @@ public class P202HappyNumber {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        // fast and slow pointer
         public boolean isHappy(int n) {
-            Set<Integer> set = new HashSet<>();
-            while (n != 1 && !set.contains(n)) {
-                set.add(n);
-                n = getNextSum(n);
+            int fast = getNextSum(n);
+            int slow = n;
+            while (fast != 1 && fast != slow) {
+                slow = getNextSum(slow);
+                fast = getNextSum(getNextSum(fast));
             }
-            return n == 1;
+            return fast == 1;
         }
+
+
+//        public boolean isHappy(int n) {
+//            Set<Integer> set = new HashSet<>();
+//            while (n != 1 && !set.contains(n)) {
+//                set.add(n);
+//                n = getNextSum(n);
+//            }
+//            return n == 1;
+//        }
 
         private int getNextSum(int n) {
             int sum = 0;
