@@ -60,12 +60,20 @@ public class P202HappyNumber {
             Set<Integer> set = new HashSet<>();
             while (n != 1 && !set.contains(n)) {
                 set.add(n);
-                String n1 = String.valueOf(n);
-                n = Arrays.stream(n1.split(""))
-                        .map(Integer::parseInt)
-                        .mapToInt(e -> e * e).sum();
+                n = getNextSum(n);
             }
             return n == 1;
+        }
+
+        private int getNextSum(int n) {
+            int sum = 0;
+            while (n > 0) {
+                int d = n % 10;
+                n = n / 10;
+                sum += d * d;
+            }
+
+            return sum;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
