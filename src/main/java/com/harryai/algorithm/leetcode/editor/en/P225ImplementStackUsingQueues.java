@@ -65,7 +65,9 @@ public class P225ImplementStackUsingQueues {
         MyStack myStack = new P225ImplementStackUsingQueues().new MyStack();
         myStack.push(1);
         myStack.push(2);
-        System.out.println(myStack.top());
+        myStack.push(3);
+        System.out.println(myStack.pop());
+        System.out.println(myStack.pop());
         System.out.println(myStack.pop());
         System.out.println(myStack.empty());
     }
@@ -78,8 +80,7 @@ public class P225ImplementStackUsingQueues {
         // size 元素数量
         // isEmpty 队列是否为空
         // master 和 salver pop时互相倒元素，每次最后一个丢弃，达到LIFO的目的
-        private Queue<Integer> master = new LinkedList<>();
-        private Queue<Integer> salver = new LinkedList<>();
+        private Queue<Integer> queue = new LinkedList<>();
         // 记录队尾，以供top,pop使用
         int tail = -1;
 
@@ -88,31 +89,32 @@ public class P225ImplementStackUsingQueues {
         }
 
         public void push(int x) {
-            master.offer(x);
+            queue.offer(x);
             tail = x;
         }
 
+        // 使用弹出所有元素，使用重新添加（但不添加最后一个元素的方式）来实现pop
         public int pop() {
             int tmpTail = tail;
             // 记录本次pop后的队尾
             int newTail = -1;
-            while (!master.isEmpty()) {
-                Integer poll = master.poll();
-                // 出队后判断下队列中是否还有，如果有，继续添加。
-                // 如果没有了表示这是最后一个，不添加。
-                if (!master.isEmpty()) {
-                    salver.offer(poll);
+            // 记录元素处理的个数
+            int eleIdx = 1;
+            int size = queue.size();
+            // 只要本次所有元素没有重新添加完成，就不停止
+            while (eleIdx <= size && !queue.isEmpty()) {
+                Integer poll = queue.poll();
+                // 最后一个元素弹出但不添加
+                if (eleIdx != size) {
+                    queue.offer(poll);
                     newTail = poll;
                 } else {
                     // 重置队尾元素
                     tail = newTail;
                 }
-
+                // 重新添加一个元素后，索引加1
+                eleIdx++;
             }
-            // 主从调换
-            Queue<Integer> tmp = master;
-            master = salver;
-            salver = tmp;
             // 返回最后一个元素
             return tmpTail;
 
@@ -123,9 +125,64 @@ public class P225ImplementStackUsingQueues {
         }
 
         public boolean empty() {
-            return master.isEmpty() && salver.isEmpty();
+            return queue.isEmpty();
         }
     }
+//    class MyStack {
+//        // offer 入队
+//        // poll 出队
+//        // peek 从队首检出
+//        // size 元素数量
+//        // isEmpty 队列是否为空
+//        // master 和 salver pop时互相倒元素，每次最后一个丢弃，达到LIFO的目的
+//        private Queue<Integer> master = new LinkedList<>();
+//        private Queue<Integer> salver = new LinkedList<>();
+//        // 记录队尾，以供top,pop使用
+//        int tail = -1;
+//
+//        public MyStack() {
+//
+//        }
+//
+//        public void push(int x) {
+//            master.offer(x);
+//            tail = x;
+//        }
+//
+//        public int pop() {
+//            int tmpTail = tail;
+//            // 记录本次pop后的队尾
+//            int newTail = -1;
+//            while (!master.isEmpty()) {
+//                Integer poll = master.poll();
+//                // 出队后判断下队列中是否还有，如果有，继续添加。
+//                // 如果没有了表示这是最后一个，不添加。
+//                if (!master.isEmpty()) {
+//                    salver.offer(poll);
+//                    newTail = poll;
+//                } else {
+//                    // 重置队尾元素
+//                    tail = newTail;
+//                }
+//
+//            }
+//            // 主从调换
+//            Queue<Integer> tmp = master;
+//            master = salver;
+//            salver = tmp;
+//            // 返回最后一个元素
+//            return tmpTail;
+//
+//        }
+//
+//        public int top() {
+//            return tail;
+//        }
+//
+//        public boolean empty() {
+//            return master.isEmpty() && salver.isEmpty();
+//        }
+//    }
 
 /**
  * Your MyStack object will be instantiated and called as such:
