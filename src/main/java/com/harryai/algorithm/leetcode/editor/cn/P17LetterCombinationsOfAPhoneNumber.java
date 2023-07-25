@@ -85,7 +85,7 @@ public class P17LetterCombinationsOfAPhoneNumber {
 
         private void doLetterCombinations(List<String> res, Map<Character, String> phoneMap, String digits, int idx,
                                           StringBuilder sb) {
-            // 所有数字对应的字符串已经处理完成
+            // 所有数字对应的字符串已经处理完成（条件不满足，回溯）
             if (idx == digits.length()) {
                 res.add(sb.toString());
             } else {
