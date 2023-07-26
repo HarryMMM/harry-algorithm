@@ -37,22 +37,20 @@ public class P22GenerateParentheses {
 
     /**
      * topic: Generate Parentheses
-     * Solution number:2
-     * Ideas:将n组括号进行组合（每个结果字符串的每个位置有两种可能‘(’或者‘)’），看总共有多少种组合方式
-     * 相比我的solution 1 每次减少了4^2n种可能性，性能略有提升
+     * Solution number:3
+     * Ideas:回溯+剪枝，在生成过程中判断字符串序列是否有效。规则
+     * 1. 左括号大于0时才继续拼左括号
+     * 2. 右括号大于左括号时才拼接右括号（因为有效的括号一定是先有左括号，再有右括号）
      * Problem boundary: 字符生成结束（字符串生成到最后一位）
      * Problem pattern: 递归，问题和子问题
-     * time complexity: 生成序列 O(2^2N)，底数2位每组括号有2个，2N为左右括号的总数
-     * ，检查序列O(2N)，N为括号的组数，去掉常数为O(N), O(2^2n*n) ,
-     * space complexity O(2N)，运算过程额外申请了2N的字符进行存储
+     * time complexity: O(4N/根N) 与
+     * space complexity O(4N/根N)
      */
     class Solution {
 
-        // solution 2：暴力，转换思路为，将n组括号进行组合（每个结果字符串的每个位置有两种可能‘(’或者‘)’），看总共有多少种组合方式
-        // 相比我的solution 1 每次减少了4^2n种可能性，性能略有提升
         public List<String> generateParenthesis(int n) {
             List<String> combinations = new ArrayList<>();
-            generateAll(new char[2 * n], 0, combinations);
+            generateAll(new char[2 * n], 0, combinations,n,n);
             return new ArrayList<>(combinations);
         }
 
@@ -60,35 +58,22 @@ public class P22GenerateParentheses {
          * @param pos 当需要放置字符的位置
          * @param result 存储结果的列表
          */
-        public void generateAll(char[] current, int pos, List<String> result) {
+        public void generateAll(char[] current, int pos, List<String> result, int l, int r) {
             // 表示生成结束，检查，如果合法则添加
             if (pos == current.length) {
-                if (valid(current)) {
-                    result.add(new String(current));
-                }
+                result.add(new String(current));
             } else {
-                // 1.生成在当前位置放置左括号的字符串
-                current[pos] = '(';
-                generateAll(current, pos + 1, result);
-                // 2.生成在当前位置放置右括号的字符串
-                current[pos] = ')';
-                generateAll(current, pos + 1, result);
-            }
-        }
-
-        public boolean valid(char[] current) {
-            int balance = 0;
-            for (char c : current) {
-                if (c == '(') {
-                    ++balance;
-                } else {
-                    --balance;
+                // 1.当还有左括号时，生成在当前位置放置左括号的字符串
+                if (l > 0) {
+                    current[pos] = '(';
+                    generateAll(current, pos + 1, result, l - 1, r);
                 }
-                if (balance < 0) {
-                    return false;
+                // 2.当右括号数量大于左括号数量时,生成在当前位置放置右括号的字符串
+                if (r > l) {
+                    current[pos] = ')';
+                    generateAll(current, pos + 1, result, l, r - 1);
                 }
             }
-            return balance == 0;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
