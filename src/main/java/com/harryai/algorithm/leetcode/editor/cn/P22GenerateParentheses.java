@@ -22,9 +22,7 @@
 package com.harryai.algorithm.leetcode.editor.cn;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 //java:Generate Parentheses
 public class P22GenerateParentheses {
@@ -37,39 +35,32 @@ public class P22GenerateParentheses {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        List<Character> a = new ArrayList<Character>(2) {{
-            add('(');
-            add(')');
-        }};
 
-        // solution 1：暴力，转换思路为，将2n个字符进行组合，看总共有多少种组合方式
+        // solution 2：暴力，转换思路为，将n组括号进行组合（每个结果字符串的每个位置有两种可能‘(’或者‘)’），看总共有多少种组合方式
+        // 相比我的solution 1 每次减少了4^2n种可能性，性能略有提升
         public List<String> generateParenthesis(int n) {
-            List<Character> b = new ArrayList<>(2 * n);
-            for (int i = 0; i < n; i++) {
-                b.addAll(a);
-            }
-            Set<String> combinations = new HashSet<>();
-            generateAll(new char[2 * n], 0, b, combinations);
+            List<String> combinations = new ArrayList<>();
+            generateAll(new char[2 * n], 0, combinations);
             return new ArrayList<>(combinations);
         }
 
         /**
-         *
-         * @param current 存储生成字符串，因为有n组左右括号，所以，长度为2n
          * @param pos 当需要放置字符的位置
-         * @param strs 需要组合的所有字符串
          * @param result 存储结果的列表
          */
-        public void generateAll(char[] current, int pos, List<Character> strs, Set<String> result) {
+        public void generateAll(char[] current, int pos, List<String> result) {
+            // 表示生成结束，检查，如果合法则添加
             if (pos == current.length) {
                 if (valid(current)) {
                     result.add(new String(current));
                 }
             } else {
-                for (Character str : strs) {
-                    current[pos] = str;
-                    generateAll(current, pos + 1, strs, result);
-                }
+                // 1.生成在当前位置放置左括号的字符串
+                current[pos] = '(';
+                generateAll(current, pos + 1, result);
+                // 2.生成在当前位置放置右括号的字符串
+                current[pos] = ')';
+                generateAll(current, pos + 1, result);
             }
         }
 
