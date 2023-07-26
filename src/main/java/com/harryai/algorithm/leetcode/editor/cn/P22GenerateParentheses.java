@@ -34,6 +34,18 @@ public class P22GenerateParentheses {
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
+
+    /**
+     * topic: Generate Parentheses
+     * Solution number:2
+     * Ideas:将n组括号进行组合（每个结果字符串的每个位置有两种可能‘(’或者‘)’），看总共有多少种组合方式
+     * 相比我的solution 1 每次减少了4^2n种可能性，性能略有提升
+     * Problem boundary: 字符生成结束（字符串生成到最后一位）
+     * Problem pattern: 递归，问题和子问题
+     * time complexity: 生成序列 O(2^2N)，底数2位每组括号有2个，2N为左右括号的总数
+     * ，检查序列O(2N)，N为括号的组数，去掉常数为O(N), O(2^2n*n) ,
+     * space complexity O(2N)，运算过程额外申请了2N的字符进行存储
+     */
     class Solution {
 
         // solution 2：暴力，转换思路为，将n组括号进行组合（每个结果字符串的每个位置有两种可能‘(’或者‘)’），看总共有多少种组合方式
